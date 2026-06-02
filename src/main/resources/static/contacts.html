@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Contact Dashboard</title>
+</head>
+<body>
+
+	<h1>Contact Management Dashboard</h1>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Message</th>
+			</tr>
+		</thead>
+
+		<tbody id="contactTable">
+		</tbody>
+
+	</table>
+
+	<script>
+		fetch("http://localhost:8080/api/contacts")
+		.then(res => res.json())
+		.then(data => {
+		
+		    const table = document.getElementById("contactTable");
+		
+		    data.forEach(c => {
+		
+		        table.innerHTML += `
+		            <tr>
+		                <td>${c.id}</td>
+		                <td>${c.name}</td>
+		                <td>${c.email}</td>
+		                <td>${c.message}</td>
+		            </tr>
+		        `;
+		    });
+		})
+		.catch(error => {
+		    console.error(error);
+		});
+	</script>
+
+</body>
+</html>
