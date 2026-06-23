@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Admin Dashboard</title>
+</head>
+<body>
+
+<h1>Admin Dashboard</h1>
+
+<button onclick="loadContacts()">Load Contacts</button>
+<form action="/logout" method="post">
+
+    <button type="submit">
+        Logout
+    </button>
+
+</form>
+
+<br><br>
+
+<table border="1">
+
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Message</th>
+        </tr>
+    </thead>
+
+    <tbody id="contactTable">
+
+    </tbody>
+
+</table>
+
+<script>
+
+function loadContacts() {
+
+    fetch('/api/contacts')
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        let rows = "";
+
+        data.forEach(contact => {
+
+            rows += `
+                <tr>
+                    <td>${contact.id}</td>
+                    <td>${contact.name}</td>
+                    <td>${contact.email}</td>
+                    <td>${contact.message}</td>
+                </tr>
+            `;
+        });
+
+        document.getElementById("contactTable")
+                .innerHTML = rows;
+    });
+}
+
+</script>
+
+</body>
+</html>

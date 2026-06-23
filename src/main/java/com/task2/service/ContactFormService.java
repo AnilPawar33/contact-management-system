@@ -9,5 +9,6 @@ public interface ContactFormService {
 	Contacts saveContacts(Contacts contact);
 	
 	List<Contacts> getAllContacts();
+	
 
 }

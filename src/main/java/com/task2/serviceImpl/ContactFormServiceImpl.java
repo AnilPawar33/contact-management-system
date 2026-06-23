@@ -11,16 +11,17 @@ import com.task2.service.ContactFormService;
 
 @Service
 public class ContactFormServiceImpl implements ContactFormService {
-	
-	@Autowired
-	private ContactRepository repo;
-	
-	public Contacts saveContacts(Contacts contact) {
-		return repo.save(contact);
-	}
-	
-	public List<Contacts> getAllContacts() {
-		return repo.findAll();
-	}
-
+    
+    @Autowired
+    private ContactRepository contactRepository;
+    
+    @Override
+    public Contacts saveContacts(Contacts contact) {
+        return contactRepository.save(contact);
+    }
+    
+    @Override
+    public List<Contacts> getAllContacts() {
+        return contactRepository.findAll();
+    }
 }
